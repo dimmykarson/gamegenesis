@@ -25,8 +25,9 @@ public class PoolSpawner : MonoBehaviour {
     {
         while (true)
         {
-            yield return new WaitForSeconds(UnityEngine.Random.Range(1, 5));
+            yield return new WaitForSeconds(UnityEngine.Random.Range(1, 1));
                 EnemySpawner randomEnemySpawner = GetRandomEnemySpawner();
+            Debug.Log(randomEnemySpawner);
                 Enemy enemy = randomEnemySpawner.Spawn(UnityEngine.Random.Range(10, 100), UnityEngine.Random.Range(5, 9));
                 enemy.transform.SetParent(this.transform);
                 enemy.transform.localPosition = Vector3.zero;

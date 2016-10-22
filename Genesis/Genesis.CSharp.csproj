@@ -68,6 +68,9 @@
     <Compile Include="Assets\Scripts\Gameplay\Spawner\PoolSpawner.cs" />
     <Compile Include="Assets\Scripts\Model\Enemy.cs" />
     <Compile Include="Assets\Scripts\Model\Player.cs" />
+    <Compile Include="Assets\Scripts\Utils\BehaviorState.cs" />
+    <Compile Include="Assets\Scripts\Utils\LayerExtensions.cs" />
+    <Compile Include="Assets\Scripts\Utils\TriggerVolume.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

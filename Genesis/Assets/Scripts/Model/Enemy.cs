@@ -1,12 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using Gameplay.Unit;
 
 namespace Model
 {
-    [RequireComponent(typeof(Rigidbody), typeof(NavMeshAgent))]
+    [RequireComponent(typeof(Rigidbody), typeof(NavMeshAgent), typeof(TriggerVolume))]
     public class Enemy : MonoBehaviour
     {
+
+        
+        private TriggerVolume sightTriggerVolume;
+
 
         private NavMeshAgent nma;
         private string nome;
@@ -24,14 +28,44 @@ namespace Model
         private bool reachDestination = false;
         private Vector3 destinationPosition;
         private bool alcancou = false;
-
+        private Player currentTarget;
+        private BehaviorState state = BehaviorState.Idle;
+        private SphereCollider colider;
         protected void Start()
         {
+            sightTriggerVolume = GetComponent<TriggerVolume>();
             nma = GetComponent<NavMeshAgent>();
             rb = GetComponent<Rigidbody>();
+            colider = GetComponent<SphereCollider>();
+
+            sightTriggerVolume.OnTriggerEnterEvent += OnSightTriggerVolumeEnter;
+            sightTriggerVolume.OnTriggerExitEvent += OnSightTriggerVolumeExit;
+
 
             BuscarDestino(GetRandomPosition());
         }
+
+        protected void OnDestroy()
+        {
+
+            sightTriggerVolume.OnTriggerEnterEvent -= OnSightTriggerVolumeEnter;
+            sightTriggerVolume.OnTriggerExitEvent -= OnSightTriggerVolumeExit;
+        }
+
+        private void OnSightTriggerVolumeExit(TriggerVolume volume, Collider collider)
+        {
+            currentTarget = null;
+            this.colider.radius = 0.2f;
+            ChangeStateTo(BehaviorState.Patrolling);
+        }
+
+        private void OnSightTriggerVolumeEnter(TriggerVolume volume, Collider collider)
+        {
+            currentTarget = collider.GetComponent<Player>();
+            this.colider.radius = 3;
+            ChangeStateTo(BehaviorState.SeekingTarget);
+        }
+
 
         private void BuscarDestino(Vector3 vector3)
         {
@@ -46,6 +80,18 @@ namespace Model
 
         }
 
+        public void ChangeStateTo(BehaviorState targetState)
+        {
+            if (state == BehaviorState.Idle && targetState == BehaviorState.Patrolling)
+            {
+                BuscarDestino(GetRandomPosition());
+            }
+            else if (state == BehaviorState.Patrolling && targetState == BehaviorState.Attacking)
+            {
+                nma.Stop();
+            }
+            state = targetState;
+        }
 
         private IEnumerator AlcancarDestino()
         {
@@ -145,7 +191,10 @@ namespace Model
         // Update is called once per frame
         void Update()
         {
-
+            if (state == BehaviorState.SeekingTarget)
+            {
+                BuscarDestino(currentTarget.transform.position);
+            }
         }
 
         
