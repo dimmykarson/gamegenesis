@@ -8,6 +8,8 @@ public class PoolSpawner : MonoBehaviour {
     private EnemySpawner[] spawners;
     private Coroutine routine;
 
+   
+
     private void Awake()
     {
         spawners = GetComponentsInChildren<EnemySpawner>();
@@ -15,10 +17,11 @@ public class PoolSpawner : MonoBehaviour {
 
     private void Start()
     {
-        if (routine != null)
-            StopCoroutine(routine);
+     
+            if (routine != null)
+                StopCoroutine(routine);
 
-        routine = StartCoroutine(GameFlowCoroutine());
+            routine = StartCoroutine(GameFlowCoroutine());
     }
 
     private IEnumerator GameFlowCoroutine()
@@ -26,12 +29,23 @@ public class PoolSpawner : MonoBehaviour {
         while (true)
         {
             yield return new WaitForSeconds(UnityEngine.Random.Range(1, 1));
+            if (GameplayController.Instance.QtEnemySpwanned < GameplayController.Instance.QtMaxEnemys)
+            {
+
                 EnemySpawner randomEnemySpawner = GetRandomEnemySpawner();
-            Debug.Log(randomEnemySpawner);
                 Enemy enemy = randomEnemySpawner.Spawn(UnityEngine.Random.Range(10, 100), UnityEngine.Random.Range(5, 9));
+                Debug.Log("Spwanando de " + randomEnemySpawner);
+                Debug.Log(randomEnemySpawner.transform.position);
                 enemy.transform.SetParent(this.transform);
                 enemy.transform.localPosition = Vector3.zero;
                 enemy.transform.localEulerAngles = Vector3.zero;
+                GameplayController.Instance.addQtEnemySpwanned();
+            }
+            else
+            {
+                Debug.Log("Quantidade máxima de Enemys atingida");
+            }
+            
     
         }
     }
@@ -41,8 +55,20 @@ public class PoolSpawner : MonoBehaviour {
     {
         return spawners[UnityEngine.Random.Range(0, spawners.Length)];
     }
-    // Update is called once per frame
+    
     void Update () {
 	
 	}
+    public EnemySpawner[] Spawners
+    {
+        get
+        {
+            return spawners;
+        }
+
+        set
+        {
+            spawners = value;
+        }
+    }
 }

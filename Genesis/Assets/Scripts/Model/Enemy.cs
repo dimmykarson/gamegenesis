@@ -118,7 +118,7 @@ namespace Model
 
         private static Vector3 GetRandomPosition()
         {
-            return new Vector3(UnityEngine.Random.Range(-50, 50), 0, UnityEngine.Random.Range(-75, 75));
+            return GameplayController.GetRandomPosition();
         }
 
         public string Nome
