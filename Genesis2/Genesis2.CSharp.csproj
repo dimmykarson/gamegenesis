@@ -66,6 +66,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Assets\BattleDragon\Colosseum\Dust\ParticleSystems\Scripts\AfterburnerPhysicsForce.cs" />
+    <Compile Include="Assets\Assets\BattleDragon\Colosseum\Dust\ParticleSystems\Scripts\ExplosionFireAndDebris.cs" />
+    <Compile Include="Assets\Assets\BattleDragon\Colosseum\Dust\ParticleSystems\Scripts\ExplosionPhysicsForce.cs" />
+    <Compile Include="Assets\Assets\BattleDragon\Colosseum\Dust\ParticleSystems\Scripts\ExtinguishableParticleSystem.cs" />
+    <Compile Include="Assets\Assets\BattleDragon\Colosseum\Dust\ParticleSystems\Scripts\FireLight.cs" />
+    <Compile Include="Assets\Assets\BattleDragon\Colosseum\Dust\ParticleSystems\Scripts\Hose.cs" />
+    <Compile Include="Assets\Assets\BattleDragon\Colosseum\Dust\ParticleSystems\Scripts\ParticleSystemMultiplier.cs" />
+    <Compile Include="Assets\Assets\BattleDragon\Colosseum\Dust\ParticleSystems\Scripts\SmokeParticles.cs" />
+    <Compile Include="Assets\Assets\BattleDragon\Colosseum\Dust\ParticleSystems\Scripts\WaterHoseParticles.cs" />
+    <Compile Include="Assets\Assets\BattleDragon\Dragons\Scripts\Camera\CameraFollow.cs" />
+    <Compile Include="Assets\Assets\BattleDragon\Dragons\Scripts\animator_controller.cs" />
+    <Compile Include="Assets\Assets\BattleDragon\Dragons\Scripts\animator_settor.cs" />
+    <Compile Include="Assets\Assets\BattleDragon\Dragons\Scripts\player_attack.cs" />
+    <Compile Include="Assets\Assets\BattleDragon\Dragons\Scripts\player_movement.cs" />
+    <Compile Include="Assets\Assets\BattleDragon\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Gameplay\Difficulty\DifficultyBalance.cs" />
     <Compile Include="Assets\Scripts\Gameplay\Difficulty\DifficultyController.cs" />
     <Compile Include="Assets\Scripts\Gameplay\GameplayController.cs" />
@@ -85,6 +100,12 @@
     <Compile Include="Assets\Scripts\Util\MonoSingleton.cs" />
     <Compile Include="Assets\Scripts\Util\SimplePool.cs" />
     <Compile Include="Assets\Scripts\Util\TriggerVolume.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Assets\BattleDragon\Colosseum\Dust\ParticleSystems\Shaders\PriorityParticleAdd.shader" />
+    <None Include="Assets\Assets\BattleDragon\Colosseum\Dust\ParticleSystems\Shaders\PriorityParticleAddSoft.shader" />
+    <None Include="Assets\Assets\BattleDragon\Colosseum\Dust\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
+    <None Include="Assets\Assets\BattleDragon\readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

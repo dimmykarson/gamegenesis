@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Gameplay.Unit;
 
-public class PlayerUnit : MonoBehaviour {
+namespace Gameplay
+{
+    public class PlayerUnit : BaseUnit
+    {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+        protected override void Awake()
+        {
+            base.Awake();
+            
+        }
+    }
 }
