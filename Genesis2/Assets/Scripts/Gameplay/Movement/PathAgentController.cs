@@ -22,19 +22,19 @@ namespace Gameplay.Unit.Movement
         protected override void Awake()
         {
             base.Awake();
-            areaMask = navMeshAgent.areaMask;
+            areaMask = NavMeshAgent.areaMask;
         }
 
         protected override void OnMoveSpeedAttributeChange(float prevValue, float currentValue)
         {
             base.OnMoveSpeedAttributeChange(prevValue, currentValue);
-            navMeshAgent.speed = moveSpeedValue;
+            NavMeshAgent.speed = moveSpeedValue;
             
         }
 
         public void Stop()
         {
-            navMeshAgent.Stop();
+            NavMeshAgent.Stop();
 
             if (checkDestination != null)
             {
@@ -57,7 +57,7 @@ namespace Gameplay.Unit.Movement
             reachDestination = false;
 
             startPosition = navMeshHit.position;
-            navMeshAgent.SetDestination(navMeshHit.position);
+            NavMeshAgent.SetDestination(navMeshHit.position);
 
             if (checkDestination != null)
             {
@@ -75,13 +75,13 @@ namespace Gameplay.Unit.Movement
                 if(!enabled)
                     continue;
 
-                if (!navMeshAgent.pathPending)
+                if (!NavMeshAgent.pathPending)
                 {
-                    if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+                    if (NavMeshAgent.remainingDistance <= NavMeshAgent.stoppingDistance)
                     {
-                        if (navMeshAgent.pathStatus == NavMeshPathStatus.PathComplete)
+                        if (NavMeshAgent.pathStatus == NavMeshPathStatus.PathComplete)
                         {
-                            if (!navMeshAgent.hasPath || Mathf.Abs(navMeshAgent.velocity.sqrMagnitude) < float.Epsilon)
+                            if (!NavMeshAgent.hasPath || Mathf.Abs(NavMeshAgent.velocity.sqrMagnitude) < float.Epsilon)
                             {
                                 reachDestination = true;
 
@@ -109,7 +109,7 @@ namespace Gameplay.Unit.Movement
             if (!navMeshHit.hit)
                 return;
 
-            navMeshAgent.Warp(navMeshHit.position);
+            NavMeshAgent.Warp(navMeshHit.position);
         }
 
         private void DispatchReachPosition()

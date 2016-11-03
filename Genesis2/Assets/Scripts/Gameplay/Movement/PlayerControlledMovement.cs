@@ -36,13 +36,13 @@ namespace Gameplay.Unit.Movement
 
         private void Turn()
         {
-            rigidBody.MoveRotation(mouseRotation);
+            RigidBody.MoveRotation(mouseRotation);
         }
 
         private void Move()
         {
             Vector3 finalSpeed = playerInput*moveSpeedValue*Time.fixedDeltaTime;
-            navMeshAgent.Move(finalSpeed);
+            NavMeshAgent.Move(finalSpeed);
         }
     }
 }

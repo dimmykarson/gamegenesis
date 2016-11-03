@@ -10,13 +10,42 @@ namespace Gameplay.Unit
     {
         private AttributePool attributePool;
         private BaseMovement baseMovement;
-        
+        private Quaternion rotation = Quaternion.identity;
 
+        public void Turn()
+        {
+            baseMovement.RigidBody.MoveRotation(Rotation);
+        }
         public AttributePool AttributePool
         {
             get { return attributePool; }
         }
 
+        public BaseMovement BaseMovement
+        {
+            get
+            {
+                return baseMovement;
+            }
+
+            set
+            {
+                baseMovement = value;
+            }
+        }
+
+        public Quaternion Rotation
+        {
+            get
+            {
+                return rotation;
+            }
+
+            set
+            {
+                rotation = value;
+            }
+        }
 
         protected virtual void Awake()
         {

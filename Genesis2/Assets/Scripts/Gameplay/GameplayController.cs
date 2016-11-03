@@ -12,7 +12,7 @@ namespace Gameplay
         [SerializeField]
         private GameObject playerPrefab;
 
-        private void Start()
+        private void Awake()
         {
             SpawnPlayer();
             DispatchGameStarted();

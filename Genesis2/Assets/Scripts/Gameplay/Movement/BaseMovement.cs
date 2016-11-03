@@ -6,14 +6,40 @@ namespace Gameplay.Unit.Movement
     [RequireComponent(typeof(Rigidbody), typeof(NavMeshAgent))]
     public class BaseMovement : MonoBehaviour
     {
-        protected NavMeshAgent navMeshAgent;
-        protected Rigidbody rigidBody;
+        private NavMeshAgent navMeshAgent;
+        private Rigidbody rigidBody;
         protected BaseUnit baseUnit;
 
         protected float moveSpeedValue;
 
 
         private Attribute.Attribute moveSpeedAttribute;
+
+        public NavMeshAgent NavMeshAgent
+        {
+            get
+            {
+                return navMeshAgent;
+            }
+
+            set
+            {
+                navMeshAgent = value;
+            }
+        }
+
+        public Rigidbody RigidBody
+        {
+            get
+            {
+                return rigidBody;
+            }
+
+            set
+            {
+                rigidBody = value;
+            }
+        }
 
         protected virtual void Awake()
         {
